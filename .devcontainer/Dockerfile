@@ -17,6 +17,9 @@ ENV RUSTUP_HOME=/home/$USERNAME/.rustup \
     PATH=/home/$USERNAME/.cargo/bin:$PATH
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile default \
-    && rustup component add rustfmt clippy rust-src rust-analyzer
+    && rustup component add rustfmt clippy rust-src rust-analyzer llvm-tools-preview
 
-RUN cargo install cargo-watch cargo-edit --locked
+RUN rustup toolchain install nightly \
+    && rustup component add miri --toolchain nightly
+
+RUN cargo install cargo-watch cargo-edit cargo-llvm-cov --locked

@@ -1,6 +1,19 @@
 [package]
-name = "lock-free"
+name = "rust-lib"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+
+[dev-dependencies]
+
+[lints.rust]
+unsafe_op_in_unsafe_fn = "warn"
+missing_docs = "warn"
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"
+undocumented_unsafe_blocks = "warn"
+missing_safety_doc = "warn"
+doc_markdown = "warn"
