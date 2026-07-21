@@ -1,4 +1,4 @@
-//! A growable, heap-allocated vector that is analogous to `std::vec::Vec`.
+//! A grow-able, heap-allocated vector that is analogous to `std::vec::Vec`.
 
 mod into_iter;
 mod raw;
@@ -35,7 +35,7 @@ impl<T> Vector<T> {
     ///
     /// # Panics
     ///
-    /// This function will panic if the push causes capacity to increase and the alloc/realloc fails
+    /// This function will panic if the push causes capacity to increase and the `alloc`/`realloc` fails
     pub fn push(&mut self, value: T) {
         // Skip all the dead code for zst types and just increment the size
         if size_of::<T>() > 0 {
@@ -90,7 +90,7 @@ impl<T> Vector<T> {
     /// Allocate an additional amount of items without initializing
     ///
     /// # Panics
-    /// Will panic if reserve causes overflow on usize type
+    /// Will panic if reserve causes overflow on `usize` type
     pub fn reserve(&mut self, to_reserve: usize) {
         self.memory.grow(
             self.size
@@ -122,7 +122,7 @@ impl<T> Vector<T> {
         self.memory.capacity
     }
 
-    /// Insert proviced value at the provided index location
+    /// Insert provided value at the provided index location
     ///
     /// # Panics
     /// 1. This function will panic if index is greater than size
@@ -231,10 +231,10 @@ impl<T> Vector<T> {
     }
 }
 
-/// Return a default T for a ZST
+/// Return a default T for a zero size type
 ///
 /// # Safety
-/// This is safe as along as T is a ZST
+/// This is safe as along as T is a zero size type
 #[allow(clippy::uninit_assumed_init)]
 unsafe fn get_zst_default<T>() -> T {
     // Safety:

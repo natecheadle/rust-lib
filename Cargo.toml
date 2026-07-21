@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 
 [dev-dependencies]
+rand = "0.10"
 
 [lints.rust]
 unsafe_op_in_unsafe_fn = "warn"
