@@ -1,4 +1,6 @@
-//! This is the integration tests for the `Vector`
+//! This is the integration tests for the [`Vector`]
+mod into_iter;
+
 use std::rc::Rc;
 
 use rust_lib::vector::{MAX_GROWTH, Vector};
